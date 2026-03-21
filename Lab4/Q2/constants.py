@@ -1,0 +1,33 @@
+from enum import Enum
+
+class Mood(Enum):
+  HAPPY = 1
+  TIRED = 2
+  LAZY = 3
+
+class HealthRatePercentage(Enum):
+  FULL_HEALTH=100
+  THREE_QUARTERS_HEALTH = 75
+  HALF_HEALTH = 50
+  NO_HEALTH = 0
+
+
+EMAIL_REGEX = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+
+ITEM_COST = 10
+
+IDEAL_SLEEP_HOURS = 7
+IDEAL_WORK_HOURS = 8
+
+IDEAL_MEALS = 3
+
+MAX_FUEL_RATE = 100
+MIN_FUEL_RATE = 0
+MAX_VELOCITY = 200
+MIN_VELOCITY = 0
+TARGET_HOUR = 8
+REWARD = 10
+DEDUCTION = 10
+
+MIN_SALARY = 1000
+MAX_SALARY = 1000000
