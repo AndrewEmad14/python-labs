@@ -55,7 +55,6 @@ class Office:
       raise TypeError("Invalid id")
     if not validator.isFloat(deduction):
       raise TypeError("Invalid deduction")
-    id = int(id)
     deduction = float(deduction)
     employee = self.get_employee_by_id(id);
     if employee is None:
@@ -66,27 +65,27 @@ class Office:
     employee.salary = deducted_salary
       
   
-  def check_lateness (self,Id, moveHour):
+  def check_lateness (self,id, moveHour):
     if not validator.isFloat(moveHour):
       raise TypeError("Invalid moveHour")
     if not validator.isNumber(id) and validator.isPostive(id):
       raise TypeError("Invalid id")
-    id = int(id)
-    employee = self.get_employee_by_id(Id);
+    employee = self.get_employee_by_id(id);
     if employee is None:
       raise ValueError("employee not found")
+    
+    moveHour = float(moveHour)
     latness = self.calculate_lateness(TARGET_HOUR, moveHour, employee.distanceToWork, employee.car.velocity)
     if latness > 0:
-      self.deduct(Id, DEDUCTION)
+      self.deduct(id, DEDUCTION)
     else:
-      self.reward(Id, REWARD)
+      self.reward(id, REWARD)
 
   def reward(self,id,reward):
     if not validator.isNumber(id) and validator.isPostive(id):
       raise TypeError("Invalid id")
     if not validator.isFloat(reward):
       raise TypeError("Invalid reward")
-    id = int(id)
     reward = float(reward)
     employee = self.get_employee_by_id(id);
     if employee is None:

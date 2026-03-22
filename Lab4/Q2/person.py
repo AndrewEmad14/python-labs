@@ -14,6 +14,8 @@ class Person:
             raise TypeError("Invalid healthRate")
         if not validator.isValidRange(healthRate,HealthRatePercentage.NO_HEALTH.value,HealthRatePercentage.FULL_HEALTH.value):
             raise ValueError("healthRate is out of range")
+        
+        money = float(money)
         self.__name = name
         self.__money = money
         self.__mood = mood
@@ -43,6 +45,8 @@ class Person:
             raise TypeError("Invalid money")
         if not validator.isPostive(money):
             raise ValueError("money cannot be negative")
+        
+        money = float(money)
         self.__money = money
     @mood.setter
     def mood(self,mood):
@@ -62,19 +66,19 @@ class Person:
       if not validator.isFloat(hours):
           raise TypeError("invalid hours")
       if not validator.isPostive(hours):
-         raise ValueError("hours must be postive")
+        raise ValueError("hours must be postive")
       hours = float(hours)
       if hours == IDEAL_SLEEP_HOURS:
-          self.__mood = Mood.happy
+          self.__mood = Mood.HAPPY.name.lower()
       elif hours > IDEAL_SLEEP_HOURS:
-          self.__mood = Mood.lazy
+          self.__mood = Mood.LAZY.name.lower()
       else:
-          self.__mood = Mood.tired
+          self.__mood = Mood.TIRED.name.lower()
           
 
 
     def eat(self,meals):
-      if not validator.isNumber():
+      if not validator.isNumber(meals):
         raise TypeError("invalid meals")
       if not validator.isPostive(meals):
          raise ValueError("hours must be postive")
@@ -88,7 +92,7 @@ class Person:
       
         
     def buy(self,items):
-      if not validator.isNumber():
+      if not validator.isNumber(items):
         raise TypeError("invalid items")
       
       items = int(items)

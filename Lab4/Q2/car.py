@@ -13,7 +13,10 @@ class Car:
       raise TypeError("Invalid velocity")
     if not validator.isValidRange(velocity,MIN_VELOCITY,MAX_VELOCITY):
       raise ValueError(f"Velocity has to be between {MIN_VELOCITY} and {MAX_VELOCITY}")
+    
     self.__name = name
+    fuelRate = float(fuelRate)
+    velocity = float(velocity)
     self.__fuelRate = fuelRate
     self.__velocity = velocity
 
@@ -41,6 +44,8 @@ class Car:
       raise TypeError("Invalid fuelRate")
     if not validator.isValidRange(fuelRate,MIN_FUEL_RATE,MAX_FUEL_RATE):
       raise ValueError(f"Fuel rate has to be between {MIN_FUEL_RATE} and {MAX_FUEL_RATE}")
+    
+    fuelRate = float(fuelRate)
     self.__fuelRate = fuelRate
 
   @velocity.setter
@@ -49,13 +54,26 @@ class Car:
       raise TypeError("Invalid velocity")
     if not validator.isValidRange(velocity,MIN_VELOCITY,MAX_VELOCITY):
       raise ValueError(f"Velocity has to be between {MIN_VELOCITY} and {MAX_VELOCITY}")
+    
+    velocity = float(velocity)
+
     self.__velocity = velocity
 
-  def run(self,distance,velocity):
+  def run(self, distance, velocity):
     self.velocity = velocity
-    remaningDistance = self.fuelRate - distance*velocity
-    self.fuelRate = remaningDistance if remaningDistance >=0 else 0
-    self.stop(self,remaningDistance)
+    
+   
+    fuel_needed = distance * velocity 
+    remaining_fuel = self.fuelRate - fuel_needed
+    
+    self.fuelRate = remaining_fuel if remaining_fuel >= 0 else 0
+    
+    if remaining_fuel > 0:
+        remaining_distance = 0
+    else:
+        remaining_distance = remaining_fuel / velocity 
+    
+    self.stop(remaining_distance)
       
 
   def stop(self,remainigDistance):
